@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Pixel Website Companion",
+  "version": "0.1.0",
+  "description": "Adds a tiny pixel companion that walks around supported web pages.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "src/serviceWorker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/contentScript.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/contentMain.js",
+        "src/shared/*.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Pixel Website Companion"
+  },
+  "browser_specific_settings": {
+    "safari": {
+      "strict_min_version": "15.4"
+    }
+  }
+}

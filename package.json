@@ -1,0 +1,21 @@
+{
+  "name": "pixel-website-companion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A Manifest V3 Web Extension that injects a tiny pixel companion into ordinary web pages.",
+  "scripts": {
+    "character:server": "node src/local/geminiCharacterServer.js",
+    "prepack": "npm test",
+    "test": "node --test tests/*.test.js",
+    "safari:convert": "xcrun safari-web-extension-converter \"$PWD\""
+  },
+  "keywords": [
+    "chrome-extension",
+    "safari-extension",
+    "web-extension",
+    "pixel-art",
+    "companion"
+  ],
+  "license": "UNLICENSED"
+}
