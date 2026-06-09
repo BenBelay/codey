@@ -3,6 +3,12 @@
   "name": "Pixel Website Companion",
   "version": "0.1.0",
   "description": "Adds a tiny pixel companion that walks around supported web pages.",
+  "icons": {
+    "16": "icons/codey-16.png",
+    "32": "icons/codey-32.png",
+    "48": "icons/codey-48.png",
+    "128": "icons/codey-128.png"
+  },
   "permissions": [
     "storage"
   ],
@@ -36,7 +42,13 @@
     }
   ],
   "action": {
-    "default_title": "Pixel Website Companion"
+    "default_title": "Pixel Website Companion",
+    "default_icon": {
+      "16": "icons/codey-16.png",
+      "32": "icons/codey-32.png",
+      "48": "icons/codey-48.png",
+      "128": "icons/codey-128.png"
+    }
   },
   "browser_specific_settings": {
     "safari": {
