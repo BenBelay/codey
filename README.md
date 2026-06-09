@@ -20,7 +20,12 @@ Codey is built as a Manifest V3 Web Extension. It adds a small pixel companion t
 - Keeps the character in page-world coordinates as the user scrolls.
 - Persists state through the cross-browser Web Extensions storage API.
 - Opens a small AI-powered, page-aware chat panel.
-- Generates custom skins with the saved API key, with a local fallback when AI generation is unavailable.
+- Includes analog/digital clock controls and a Pomodoro timer.
+- Lets users tune movement with speed and jumpiness controls.
+- Reacts to blocked or distracting sites, with user-editable blocked-site settings.
+- Lets the companion hide in a little door and return from it.
+- Includes built-in skin choices.
+- Carries the companion between pages and tabs with portal-style transition behavior.
 
 ## Load Locally in Chrome
 
@@ -50,13 +55,13 @@ npm test
 
 ## AI Features and API Keys
 
-Codey uses a bring-your-own-key flow for AI features. Open the companion **About** tab, paste an API key, and click **Save key**. The key is saved in extension-local storage on this device until the user clears it, resets extension storage, or uninstalls the extension. It is used for AI page chat and custom character generation, and is not stored in preferences or custom skins.
+Codey uses a bring-your-own-key flow for AI features. Open the companion **About** tab, paste an API key, and click **Save key**. The key is saved in extension-local storage on this device until the user clears it, resets extension storage, or uninstalls the extension. It is used for AI page chat and is not stored in preferences.
 
-Normal extension use does not require running a local server. The popup key is enough for AI chat and AI character generation.
+Normal extension use does not require running a local server. The About tab key is enough for AI chat.
 
 The `npm run character:server` command is only an optional developer helper for testing the old local character-generation endpoint directly. It is not needed by users who load the extension and save an API key in the companion About tab.
 
-AI page chat requires a saved API key and returns AI output. If no API key is saved, the chat panel asks the user to add one in About. For custom characters, if no API key is saved or the image generation service returns an invalid plan, the extension uses the local fallback generator.
+AI page chat requires a saved API key and returns AI output. If no API key is saved, the chat panel asks the user to add one in About.
 
 ## Contributing
 
@@ -66,9 +71,9 @@ Good contributions should keep the project goals in mind: playful, focused, acce
 
 ## Roadmap Ideas
 
-- Improve the companion's study and focus behaviors.
 - Add more site-aware reactions.
-- Expand character customization.
+- Make the companion more collaborative.
+- Add custom characters.
 - Refine the AI chat experience for younger and general audiences.
-- Improve cross-browser polish for Chrome and Safari.
+- Add manual movement controls.
 - Explore multi-tab movement and richer portal transitions.
