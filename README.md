@@ -20,14 +20,16 @@ Codey is built as a Manifest V3 Web Extension. It adds a small pixel companion t
 - Keeps the character in page-world coordinates as the user scrolls.
 - Persists state through the cross-browser Web Extensions storage API.
 - Opens a small AI-powered, page-aware chat panel.
-- Generates custom skins through a local sprite-plan proxy with a local fallback.
+- Generates custom skins with the saved API key, with a local fallback when AI generation is unavailable.
 
 ## Load Locally in Chrome
+
+Clone or download this repository first, then load the repository folder as an unpacked extension.
 
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
 3. Click **Load unpacked**.
-4. Select this folder: `/Users/benjamin/Documents/PROJECTS/HTML friend`.
+4. Select the folder that contains this repository's `manifest.json`.
 5. Visit a normal website. Chrome internal pages and locked-down extension pages cannot run content scripts.
 
 ## Load Locally in Safari
@@ -35,10 +37,10 @@ Codey is built as a Manifest V3 Web Extension. It adds a small pixel companion t
 Safari Web Extensions must be wrapped in an Xcode app before Safari can enable them.
 
 ```sh
-xcrun safari-web-extension-converter "/Users/benjamin/Documents/PROJECTS/HTML friend"
+xcrun safari-web-extension-converter "$PWD"
 ```
 
-Open the generated Xcode project, run the macOS app target, then enable the extension in **Safari > Settings > Extensions**. Safari browser pages, App Store pages, and other locked-down documents still cannot run content scripts.
+Run that command from the repository folder. Open the generated Xcode project, run the macOS app target, then enable the extension in **Safari > Settings > Extensions**. Safari browser pages, App Store pages, and other locked-down documents still cannot run content scripts.
 
 ## Test
 
@@ -50,13 +52,11 @@ npm test
 
 Codey uses a bring-your-own-key flow for AI features. Open the companion **About** tab, paste an API key, and click **Save key**. The key is saved in extension-local storage on this device until the user clears it, resets extension storage, or uninstalls the extension. It is used for AI page chat and custom character generation, and is not stored in preferences or custom skins.
 
-For local development, the character generation endpoint can also be tested independently with the local proxy. The server reads `AI_API_KEY` from the process environment or local `.env`; provider-specific legacy environment names are still accepted as fallbacks. This is a development helper, not the production extension path.
+Normal extension use does not require running a local server. The popup key is enough for AI chat and AI character generation.
 
-```sh
-AI_API_KEY=your_key npm run character:server
-```
+The `npm run character:server` command is only an optional developer helper for testing the old local character-generation endpoint directly. It is not needed by users who load the extension and save an API key in the companion About tab.
 
-AI page chat requires a saved API key and returns AI output. If no API key is saved, the chat panel will ask for one instead of using the local page-text summarizer. For custom characters, if no API key is saved or the image generation service returns an invalid plan, the extension uses the local fallback generator.
+AI page chat requires a saved API key and returns AI output. If no API key is saved, the chat panel asks the user to add one in About. For custom characters, if no API key is saved or the image generation service returns an invalid plan, the extension uses the local fallback generator.
 
 ## Contributing
 
